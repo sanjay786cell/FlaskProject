@@ -16,6 +16,10 @@ class Todo(db.Model):
 	def __repr__(self):
 		return '<Task %r>' % self.id
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
 
 @app.route('/', methods=['POST','GET'])
 def index():
